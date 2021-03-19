@@ -41,9 +41,42 @@ public class MainActivity extends AppCompatActivity {
             handleInput(4);
         });
 
-        this.findViewById(R.id.plusButton).setOnClickListener(view -> {
+        this.findViewById(R.id.fiveButton).setOnClickListener(view -> {
+                handleInput(5);
+        });
+
+        this.findViewById(R.id.sixButton).setOnClickListener(view -> {
+            handleInput(6);
+        });
+
+        this.findViewById(R.id.sevenbutton).setOnClickListener(view -> {
+            handleInput(7);
+        });
+
+        this.findViewById(R.id.eightButton).setOnClickListener(view -> {
+            handleInput(8);
+        });
+
+        this.findViewById(R.id.nineButton).setOnClickListener(view -> {
+            handleInput(9);
+        });
+
+        this.findViewById(R.id.additionButton).setOnClickListener(view -> {
             handleOperator(Operator.Add);
         });
+
+        this.findViewById(R.id.subtractButton).setOnClickListener(view -> {
+            handleOperator(Operator.Subtract);
+        });
+
+        this.findViewById(R.id.multiplicationButton).setOnClickListener(view -> {
+            handleOperator(Operator.Multiply);
+        });
+
+        this.findViewById(R.id.divideButton).setOnClickListener(view -> {
+            handleOperator(Operator.Divide);
+        });
+
     }
 
     private void handleInput(Integer number) {
