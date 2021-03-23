@@ -71,15 +71,22 @@ public class Calculator {
 
         }
         input = total.toString();
-
     }
 
     public void equalTotal(){
         this.calculateTotal();
+        clearInput =true;
     }
 
     public void signFlipTotal(){
-        input = '-' + input;
+        if(input.contains("-")){
+            double val =  Double.parseDouble(input);
+            val = -val;
+            input = String.valueOf(val);
+
+        }else {
+            input = '-' + input;
+        }
     }
 
     public void addDecimal() {
