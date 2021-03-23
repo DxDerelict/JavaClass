@@ -6,12 +6,22 @@ public class Calculator {
     private String input;
     private String previousInput;
     private Operator operator;
+    private Operator previousOperator;
     private Boolean clearInput;
 
     public Calculator() {
         this.input = INITIAL_VALUE;
         this.previousInput = INITIAL_VALUE;
+        this.previousOperator = null;
         this.clearInput = false;
+    }
+
+    public void clearValues(){
+        this.input = INITIAL_VALUE;
+        this.previousInput = INITIAL_VALUE;
+        this.operator = null;
+        this.clearInput = false;
+
     }
 
     public void inputNumber(Integer number) {
@@ -26,11 +36,21 @@ public class Calculator {
         }
     }
 
+    public void inputDecimal(){
+        if(clearInput){
+            previousInput = input;
+
+        }
+
+    }
+
     public void inputOperator(Operator operator) {
         if (this.operator != null) {
             this.calculateTotal();
+            this.previousOperator = this.operator;
         }
         this.operator = operator;
+        this.previousOperator = this.operator;
         this.clearInput = true;
     }
 
@@ -38,7 +58,6 @@ public class Calculator {
         Double total = 0.0;
         Double valueOne = Double.parseDouble(previousInput);
         Double valueTwo = Double.parseDouble(input);
-
 
         switch (operator) {
             case Add:
@@ -56,9 +75,18 @@ public class Calculator {
         }
 
         input = total.toString();
+
+    }
+
+    public void equalTotal(){
+        this.calculateTotal();
     }
 
     public String getInput() {
         return this.input;
+    }
+
+    public String getPreviousInput(){
+        return this.previousInput;
     }
 }

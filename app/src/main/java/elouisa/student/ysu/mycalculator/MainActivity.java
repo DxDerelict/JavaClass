@@ -1,13 +1,13 @@
 package elouisa.student.ysu.mycalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private final Calculator calculator;
     private EditText display;
+    private EditText subDisplay;
 
     public MainActivity() {
         super();
@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         display = this.findViewById(R.id.display);
+        subDisplay = this.findViewById(R.id.display2);
+        {
 
         this.findViewById(R.id.zeroButton).setOnClickListener(view -> {
             handleInput(0);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.findViewById(R.id.fiveButton).setOnClickListener(view -> {
-                handleInput(5);
+            handleInput(5);
         });
 
         this.findViewById(R.id.sixButton).setOnClickListener(view -> {
@@ -76,16 +78,50 @@ public class MainActivity extends AppCompatActivity {
         this.findViewById(R.id.divideButton).setOnClickListener(view -> {
             handleOperator(Operator.Divide);
         });
+    }
+
+        this.findViewById(R.id.equalButton).setOnClickListener(view -> {
+            equal();
+        });
+
+        this.findViewById(R.id.acButton).setOnClickListener(view -> {
+            resetCalc();
+        });
+
+        this.findViewById(R.id.percentButton).setOnClickListener(view -> {
+            percent();
+        });
+
+    }
+    private void equal(){
+
+        calculator.equalTotal();
+        display.setText(calculator.getInput());
+
+
+    }
+    private void percent(){
+
+
+    }
+    private void resetCalc(){
+        calculator.clearValues();
+        display.setText("0");
+        subDisplay.setText("Clear");
 
     }
 
     private void handleInput(Integer number) {
         calculator.inputNumber(number);
         display.setText(calculator.getInput());
+        subDisplay.setText(calculator.getPreviousInput());
     }
 
     private void handleOperator(Operator operator) {
         calculator.inputOperator(operator);
+
         display.setText(calculator.getInput());
+        subDisplay.setText(calculator.getPreviousInput());
     }
+
 }
