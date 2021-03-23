@@ -36,14 +36,6 @@ public class Calculator {
         }
     }
 
-    public void inputDecimal(){
-        if(clearInput){
-            previousInput = input;
-
-        }
-
-    }
-
     public void inputOperator(Operator operator) {
         if (this.operator != null) {
             this.calculateTotal();
@@ -74,12 +66,36 @@ public class Calculator {
                 break;
         }
 
+        if ((total == Math.floor(total)) && !Double.isInfinite(total)) {
+            input = total.toString();   //Working to remove zeros past decimal point
+
+        }
         input = total.toString();
 
     }
 
     public void equalTotal(){
         this.calculateTotal();
+    }
+
+    public void signFlipTotal(){
+        input = '-' + input;
+    }
+
+    public void addDecimal() {
+        if (clearInput) {
+            input = "0.";
+            clearInput =false;
+        }
+        if (!input.contains(".")) {
+            input = input + '.';
+        }
+    }
+
+    public void percentInput(){
+        double val =  Double.parseDouble(input);
+        val = val/100;
+        input = String.valueOf(val);
     }
 
     public String getInput() {

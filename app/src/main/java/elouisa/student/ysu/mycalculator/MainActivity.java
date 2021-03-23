@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
             handleInput(9);
         });
 
+        this.findViewById(R.id.decimalButton).setOnClickListener(view -> {
+            decimal();
+        });
+
         this.findViewById(R.id.additionButton).setOnClickListener(view -> {
             handleOperator(Operator.Add);
         });
@@ -88,28 +92,37 @@ public class MainActivity extends AppCompatActivity {
             resetCalc();
         });
 
+        this.findViewById(R.id.plusMinusButton).setOnClickListener(view -> {
+            signFlip();
+        });
+
         this.findViewById(R.id.percentButton).setOnClickListener(view -> {
             percent();
         });
 
     }
-    private void equal(){
 
-        calculator.equalTotal();
-        display.setText(calculator.getInput());
-
-
-    }
-    private void percent(){
-
-
-    }
     private void resetCalc(){
         calculator.clearValues();
         display.setText("0");
         subDisplay.setText("Clear");
 
     }
+    private void signFlip(){
+        calculator.signFlipTotal();
+        display.setText(calculator.getInput());
+    }
+
+    private void equal(){
+        calculator.equalTotal();
+        display.setText(calculator.getInput());
+    }
+    private void percent(){
+        calculator.percentInput();
+        display.setText(calculator.getInput());
+
+    }
+
 
     private void handleInput(Integer number) {
         calculator.inputNumber(number);
@@ -122,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
 
         display.setText(calculator.getInput());
         subDisplay.setText(calculator.getPreviousInput());
+    }
+    private void decimal(){
+        calculator.addDecimal();
+        display.setText(calculator.getInput());
+        subDisplay.setText(calculator.getPreviousInput());
+
     }
 
 }
